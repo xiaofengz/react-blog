@@ -1,0 +1,58 @@
+{
+  "name": "cooperation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node build/develop.js",
+    "prod": "node build/production.js",
+    "test": "node build/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@182.92.197.42:22056/RTIS/linkingmed.frontend.saas.systemAdmin.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.16.2",
+    "backon.css": "^1.5.8",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0"
+  },
+  "devDependencies": {
+    "antd": "^2.12.2",
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.1.1",
+    "babel-plugin-import": "^1.2.1",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "browser-sync": "^2.18.12",
+    "browser-sync-webpack-plugin": "^1.2.0",
+    "copy-webpack-plugin": "^4.0.1",
+    "css-loader": "^0.28.4",
+    "eventsource-polyfill": "^0.9.6",
+    "express": "^4.15.3",
+    "extract-text-webpack-plugin": "^3.0.0",
+    "file-loader": "^1.1.6",
+    "html-webpack-plugin": "^2.29.0",
+    "json-loader": "^0.5.4",
+    "less": "^2.7.2",
+    "less-loader": "^4.0.5",
+    "path": "^0.12.7",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-redux": "^5.0.5",
+    "react-router": "^2.8.1",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0",
+    "style-loader": "^0.18.2",
+    "url-loader": "^0.5.9",
+    "webpack": "^3.2.0",
+    "webpack-dev-middleware": "^1.11.0",
+    "webpack-hot-middleware": "^2.18.2"
+  }
+}

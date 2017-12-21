@@ -1,0 +1,17 @@
+
+*.idea
+.idea
+.tmp/
+.vscode
+.DS_Store
+*.DS_Store
+*.seed
+*.log
+*.gz
+*.rar
+package-lock.json
+
+dist/
+node_modules
+dist_zip/
+
