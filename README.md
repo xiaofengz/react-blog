@@ -1,4 +1,7 @@
-# 系统管理 版本2.0   （react/react-router2.8.1/redux/axios）2017.12.15
+# tiny   （react/react-router2.8.1/redux/axios）2017.12.21
+
+## 类似简书的博客网站
+### stage1. 只做前端相关模块，暂时只放自己的博客文章及收集的前端相关技术专题
 
 # 启动 Setup
 
