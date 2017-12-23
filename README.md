@@ -3,6 +3,8 @@
 ## 类似简书的博客网站
 ### stage1. 只做前端相关模块，暂时只放自己的博客文章及收集的前端相关技术专题
 
+## 1.编辑器实现
+codemirror + react-markdown
 # 启动 Setup
 
     npm install/ cnpm i
