@@ -12,7 +12,7 @@ const urls = (function () {
             url: "http://192.168.0.116:50007/linkingMed/saasAdmin/api/v1",
         },
         "test": {
-            url: "测试环境后台接口url",
+            url: "http://test.b.passport.linkingmed.com/linkingMed/saasAdmin/api/v1",
         }
     };
     return url[ENV];
