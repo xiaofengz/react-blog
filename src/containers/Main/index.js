@@ -29,7 +29,7 @@ class Main extends Component {
 		};
 		return <div>
 				<div style={{"height":"100px","width":"40%",float:"left"}}>
-				<CodeMirror value={this.state.value} onChange={this.updateCode.bind(this)} options={options} />
+				<CodeMirror value={this.state.value} style={{height:"100%"}} onChange={this.updateCode.bind(this)} options={options} />
 				</div>
 				<ReactMarkdown className="result" 
 							source={this.state.value}  
