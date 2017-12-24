@@ -17,6 +17,7 @@
   "dependencies": {
     "axios": "^0.16.2",
     "backon.css": "^1.5.8",
+    "draft-js": "^0.10.4",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.1",
     "react": "^15.6.1",
