@@ -1,29 +1,43 @@
 
 import React, {Component} from 'react';
 import CodeMirror from 'COMPONENTS/CodeMirror';
+import { Input } from 'antd';
 import  ReactMarkdown from 'react-markdown';
 import CodeBlock from "COMPONENTS/CodeBlock"
-
+const { TextArea } = Input;
 class EditorMarkdown extends Component {
 	constructor (props) {
 		super(props)
 		this.state = {
-			value:``
+			value:''
 		}
 	}
 	componentDidMount () {
 	}
-	updateCode(newCode) {
+	updateCode(e) {
 		this.setState({
-			value: newCode,
+			value: e.target.value,
 		});
+		console.log(e.keyCode)
+		if (e.keyCode == 9) {
+			alert('tab！')
+		}
 	}
-
+	checkTab (e) {
+		if (e.keyCode == 9) {
+			e.preventDefault();
+			this.setState({
+				value:this.state.value + '    '
+			})
+		}
+		console.log('value',e.target.value)
+	}
     render() {
 
 		return <div>
 				<div style={{"height":"100vh","width":"50%",float:"left"}}>
-				<CodeMirror value={this.state.value}  onChange={this.updateCode.bind(this)}/>
+				{/* <CodeMirror value={this.state.value}  onChange={this.updateCode.bind(this)}/> */}
+				<TextArea style={{width:"100%",height:"100%"}} value={this.state.value} onChange={this.updateCode.bind(this)} onKeyDown={this.checkTab.bind(this)}></TextArea>
 				</div>
 				<ReactMarkdown className="result" 
 							source={this.state.value}  

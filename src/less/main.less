@@ -72,14 +72,29 @@ body {
   overflow-y: scroll;
   p {
     margin-bottom: 20px;
+    word-break: break-word;
+    font-size: 16px;
   }
   code {
     border: none;
     font-size: 12px;
     padding: 0;
+    color: #657b83;
+    font-size: 12px;
     background-color: transparent;
     white-space: pre;
-    font-weight: normal;
+  }
+  pre {
+    word-wrap: normal;
+    word-break: break-all;
+    white-space: pre;
+    overflow: auto;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #d9d9d9;
+    border-radius: 0;
+    line-height: 20px;
+    background-color: #f2f2f2;
   }
   blockquote {
     padding: 20px;

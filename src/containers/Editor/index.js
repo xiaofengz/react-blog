@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Col } from 'antd';
+import { Row, Col,Input } from 'antd';
 import Write from 'CONTAINERS/Write';
 import Markdown from 'CONTAINERS/EditorMarkdown'
 class Editor extends Component {
@@ -13,7 +13,7 @@ class Editor extends Component {
                 <Row>
                     <Col span={6}>新建文章</Col>
                     <Col span={18}>
-                    <input type="text" placeholder="请输入文章标题..."/>
+                    <Input type="text" placeholder="请输入文章标题..."/>
                     <Markdown />
                     </Col>
                 </Row>
