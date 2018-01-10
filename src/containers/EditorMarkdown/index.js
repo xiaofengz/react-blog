@@ -37,7 +37,7 @@ class EditorMarkdown extends Component {
 		return <div>
 				<div style={{"height":"100vh","width":"50%",float:"left"}}>
 				{/* <CodeMirror value={this.state.value}  onChange={this.updateCode.bind(this)}/> */}
-				<TextArea style={{width:"100%",height:"100%"}} value={this.state.value} onChange={this.updateCode.bind(this)} onKeyDown={this.checkTab.bind(this)}></TextArea>
+				<TextArea style={{width:"100%",height:"100%",padding:"40px 40px",fontSize:"16px"}} value={this.state.value} onChange={this.updateCode.bind(this)} onKeyDown={this.checkTab.bind(this)}></TextArea>
 				</div>
 				<ReactMarkdown className="result" 
 							source={this.state.value}  
