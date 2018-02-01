@@ -26,6 +26,7 @@ class Header extends Component {
                     {
                         name:"from简书",
                         icon:"iconfont icon-yuan-github",
+                        href:"https://www.jianshu.com/u/c61d3264146f",
                         children:[]
                     },
                     {
@@ -66,7 +67,18 @@ class Header extends Component {
             {
                 name:"我的github",
                 icon:"iconfont icon-yuan-github",
-                children:[]
+                children:[
+                    {
+                        name:"我的简书",
+                        icon:"iconfont icon-jianbao",
+                        href:"https://www.jianshu.com/u/c61d3264146f",
+                    },
+                    {
+                        name:"我的知乎",
+                        icon:"iconfont icon-zhihu",
+                        href:"https://www.zhihu.com/people/zhan-xiao-feng-30-92/activities",
+                    },
+                ]
             },
         ]
         this.state = {
@@ -78,6 +90,12 @@ class Header extends Component {
         this.setState({
             currentNav:index
         })
+        if (index === 3) {
+            window.open('http://github.com/xiaofengz')
+        }
+    }
+    handleClickNavItem (item) {
+        item.href && window.open(item.href)
     }
     // to write article route
     handleOnToWrite () {
@@ -98,7 +116,7 @@ class Header extends Component {
                             <ul className="nav-ul-child">
                                 {
                                     item.children.map((item, i) => {
-                                       return <li className="nav-child-li" key={"child" + i}>{ item.name }</li>
+                                       return <li className="nav-child-li" key={"child" + i} onClick={ this.handleClickNavItem.bind(this, item) }>{ item.name }</li>
                                     })
                                 }
                             </ul>
