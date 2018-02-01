@@ -8,9 +8,9 @@ class UserService {
     // 请求demo1
   fetchSomeData(data) {
     return xhr({
-      method: "post",
-      url: "http://dev.teamedicine.linkingmed.com/rtcooperation/api/v2/users/get/users/uid",
-      data: {
+      method: "get",
+      url: "http://127.0.0.1:9001/users/getUserInfo",
+      params: {
         ...data
       }
     });

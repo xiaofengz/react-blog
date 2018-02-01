@@ -66,6 +66,60 @@
                 color:#ea6f5a;
             }
         }
-        
+    }
+    .header-user {
+        width: 90px;
+        float: right;
+        height: 100%;
+        z-index: 1000;
+        .user-setting {
+            width: 170px;
+            border-radius: 0 0 4px 4px;
+            border-color: transparent;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            position: absolute;
+            z-index: 1000;
+            float: left;
+            min-width: 160px;
+            list-style: none;
+            font-size: 14px;
+            text-align: left;
+            margin-top: -4px;
+            background-color: #fff;
+            display: none;
+            li {
+                height: 60px;
+                width: 150px;
+                font-size: 17px;
+                line-height: 60px;
+                float: left;
+                text-align: center;
+                width:100%;
+                i {
+                    color:#ea6f5a;
+                }
+                a {
+                    color: rgba(0, 0, 0, 0.65);
+                }
+                &:hover {
+                    cursor:pointer;
+                    background: #f0f0f0;
+                }
+            }
+        }
+        .user-content {
+            img {
+                height: 50px;
+                margin-top: 5px;
+                border-radius: 50%;
+            }
+            
+        }
+        &:hover {
+            .user-setting {
+                z-index: 1000;
+                display: block;
+            }
+        }
     }
 }

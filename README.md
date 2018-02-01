@@ -15,6 +15,7 @@ codemirror + react-markdown + highlight(代码高亮)
 · 后续功能：
 
 > 1.node搭建后端
+
 > 2.增加mongodb数据库
 
 -- 实现站内提交发布博客

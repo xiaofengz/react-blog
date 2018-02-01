@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import { Input } from 'antd';
 import logo from '../../../static/img/logo.png';
+import head from '../../../static/img/head.jpg';
 import './index.less';
+import UserService from 'SERVICES/userService';
 
 const Search = Input.Search;
 
@@ -101,6 +103,11 @@ class Header extends Component {
     handleOnToWrite () {
         this.context.router.push(`/writeArticle`)
     }
+    jumpToPersonalPage () {
+        UserService.fetchSomeData({
+            id:"1"
+        })
+    }
     render () {
         return (
             <nav className="nav">
@@ -133,7 +140,30 @@ class Header extends Component {
                     onSearch={value => console.log(value)}
                     size="large"
                     style={{ width: 260,height:40,marginTop:10,marginRight:25,float:"right" }}/>
-            
+            <div className="header-user">
+                <div className="user-content">
+                    <a href="">
+                        <img src={head} alt="head" />
+                    </a>
+                </div>
+                <ul className="user-setting">
+                    <li>
+                        <a href="">
+                        <i className="iconfont icon-user" onClick={this.jumpToPersonalPage.bind(this)}></i>个人主页
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                        <i className="iconfont icon-shezhi"></i>设置
+                        </a>
+                    </li>
+                    <li>
+                    <a href="">
+                        <i className="iconfont icon-tuichu"></i>退出
+                        </a>
+                    </li>
+                </ul>
+            </div>
             </nav>
         )
     }
