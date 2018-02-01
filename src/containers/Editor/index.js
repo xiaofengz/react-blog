@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Row, Col,Input } from 'antd';
 import Write from 'CONTAINERS/Write';
-import Markdown from 'CONTAINERS/EditorMarkdown'
+import Markdown from './EditorMarkdown'
 class Editor extends Component {
     constructor(props) {
         super(props)

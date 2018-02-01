@@ -1,0 +1,146 @@
+.article-container {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    .article-caroucel {
+        height: 270px;
+        width:600px;
+        .ant-carousel .slick-slide {
+            width:560px;
+            text-align: center;
+            height: 300px;
+            line-height: 270px;
+          }
+    }
+    .article-content {
+        margin-top: 80px;
+        .article-content-ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: block;
+            .article-content-li {
+                min-height: 140px;
+                position: relative;
+                width: 100%;
+                margin: 0 0 17px;
+                padding: 0 2px 17px 0;
+                border-bottom: 1px solid #f0f0f0;
+                word-wrap: break-word;
+                .note-title {
+                    margin: -7px 0 4px;
+                    display: inherit;
+                    font-size: 18px;
+                    font-weight: 700;
+                    line-height: 1.5;
+                    cursor: pointer;
+                    color: #333;
+                    text-decoration: none;
+                    &:visited {
+                        color: #969696;
+                    }
+                }
+                .note-abstract {
+                    margin: 0 0 8px;
+                    font-size: 13px;
+                    line-height: 24px;
+                    display: block;
+                    -webkit-margin-before: 1em;
+                    -webkit-margin-after: 1em;
+                    -webkit-margin-start: 0px;
+                    -webkit-margin-end: 0px;
+                }
+                .note-footer {
+                    padding-right: 0!important;
+                    font-size: 12px;
+                    font-weight: 400;
+                    line-height: 20px;
+                    a {
+                        margin-right: 10px;
+                        color: #b4b4b4;
+                        font-family: Georgia,Times New Roman,Times,Songti SC,serif;
+                        background-color: transparent;
+                        &:hover {
+                            transition: .1s ease-in;
+                            -webkit-transition: .1s ease-in;
+                            -moz-transition: .1s ease-in;
+                            -o-transition: .1s ease-in;
+                            -ms-transition: .1s ease-in;
+                        }
+                    }
+                    i {
+                        color: #b4b4b4;
+                    }
+                    .footer-type {
+                        display: inline-block;
+                        padding: 3px 6px;
+                        margin-top: -1px;
+                        max-width: 200px;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                        line-height: 1;
+                        vertical-align: middle;
+                        color: #ea6f5a!important;
+                        border: 1px solid rgba(236,97,73,.7);
+                        border-radius: 3px;
+                    }
+                    .footer-readNum {
+                        
+                    }
+                }
+                .note-content {
+                    .author {
+                        margin-bottom: 14px;
+                        font-size: 13px;
+                        height: 32px;
+                        .author-info {
+                            vertical-align: middle;
+                            display: inline-block;
+                            height: 40px;
+                            a {
+                                color: #333;
+                                cursor: pointer;
+                                font-size: 13px;
+                                word-wrap: break-word;
+                                margin: 0 5px;
+
+                            }
+                            span {
+                                display: inline-block;
+                                padding-left: 3px;
+                                color: #969696;
+                                vertical-align: middle;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@media (min-width: 992px){
+    .article-container {
+        width: 960px;
+    }
+}
+
+
+@media (min-width: 1081px) {
+    .article-container {
+        width: 960px;
+    }
+}
+
+@media (min-width: 992px) {
+    .article-container {
+        width: 970px;
+    }
+}
+
+@media (min-width: 768px) {
+    .article-container {
+        width: 750px;
+    }
+}
