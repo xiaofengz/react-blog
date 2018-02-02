@@ -1,4 +1,4 @@
-# tiny-markdown-editor   2017.12.21
+# react-blog by Evan   2017.12.21
 
 ## 类似简书的博客网站
 ![img](https://github.com/xiaofengz/react-markdown-editor/blob/master/static/img/tiny1.gif)
