@@ -1,6 +1,6 @@
 
 import React, {Component} from 'react';
-import CodeMirror from 'COMPONENTS/CodeMirror';
+// import CodeMirror from 'COMPONENTS/CodeMirror';
 import { Input } from 'antd';
 import  ReactMarkdown from 'react-markdown';
 import CodeBlock from "COMPONENTS/CodeBlock"

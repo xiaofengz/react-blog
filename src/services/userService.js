@@ -5,8 +5,8 @@ class UserService {
   constructor() {
       this.url = urls["url"];
     }
-    // 请求demo1
-  fetchSomeData(data) {
+    // 请求用户信息demo
+    fetchUserInfo(data) {
     return xhr({
       method: "get",
       url: "http://127.0.0.1:9001/users/getUserInfo",
@@ -15,6 +15,15 @@ class UserService {
       }
     });
   }
+    login (data) {
+      return xhr({
+        method: "post",
+        url: "http://127.0.0.1:9001/users/login",
+        data: {
+          ...data
+        }
+      });
+    }
 }
 
 export default new UserService();

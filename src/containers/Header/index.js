@@ -4,85 +4,13 @@ import logo from '../../../static/img/logo.png';
 import head from '../../../static/img/head.jpg';
 import './index.less';
 import UserService from 'SERVICES/userService';
+import test from './test';
 
 const Search = Input.Search;
 
 class Header extends Component {
     constructor(props) {
         super(props)
-        this.tabs = [
-            {
-                name:"文章",
-                icon:"iconfont icon-wenzhang",
-                children:[
-                    {
-                        name:"原创",
-                        icon:"iconfont icon-yuan-github",
-                        children:[]
-                    },
-                    {
-                        name:"from知乎",
-                        icon:"iconfont icon-yuan-github",
-                        children:[]
-                    },
-                    {
-                        name:"from简书",
-                        icon:"iconfont icon-yuan-github",
-                        href:"https://www.jianshu.com/u/c61d3264146f",
-                        children:[]
-                    },
-                    {
-                        name:"from others",
-                        icon:"iconfont icon-yuan-github",
-                        children:[]
-                    },
-                ]
-            },
-            {
-                name:"有趣的js",
-                icon:"iconfont icon-JS-",
-                children:[]
-            },
-            {
-                name:"react专题",
-                icon:"iconfont icon-react",
-                children:[
-                    {
-                        name:"react相关技术文章",
-                        icon:"iconfont icon-yuan-github",
-                    },
-                    {
-                        name:"react小插件",
-                        icon:"iconfont icon-yuan-github",
-                    },
-                    {
-                        name:"dva",
-                        icon:"iconfont icon-yuan-github",
-                        children:[]
-                    },
-                    {
-                        name:"ant design",
-                        icon:"iconfont icon-yuan-github",
-                    },
-                ]
-            },
-            {
-                name:"我的github",
-                icon:"iconfont icon-yuan-github",
-                children:[
-                    {
-                        name:"我的简书",
-                        icon:"iconfont icon-jianbao",
-                        href:"https://www.jianshu.com/u/c61d3264146f",
-                    },
-                    {
-                        name:"我的知乎",
-                        icon:"iconfont icon-zhihu",
-                        href:"https://www.zhihu.com/people/zhan-xiao-feng-30-92/activities",
-                    },
-                ]
-            },
-        ]
         this.state = {
             currentNav:0
         }
@@ -104,7 +32,7 @@ class Header extends Component {
         this.context.router.push(`/writeArticle`)
     }
     jumpToPersonalPage () {
-        UserService.fetchSomeData({
+        UserService.fetchUserInfo({
             id:"1"
         })
     }
@@ -114,7 +42,7 @@ class Header extends Component {
             <img src={logo} title="回到首页" onClick={()=> this.context.router.push(`/`)}/>
             <ul className="nav-ul">
                 {
-                    this.tabs && this.tabs.map((item, index) => {
+                    test && test.map((item, index) => {
                         const choose = this.state.currentNav === index ? "nav-li choosed" : "nav-li"
                         return (
                             <li key={index} className={choose} onClick={ this.handleOnClickNav.bind(this, index) }>
@@ -147,19 +75,19 @@ class Header extends Component {
                     </a>
                 </div>
                 <ul className="user-setting">
-                    <li>
-                        <a href="">
-                        <i className="iconfont icon-user" onClick={this.jumpToPersonalPage.bind(this)}></i>个人主页
+                    <li onClick={this.jumpToPersonalPage.bind(this)}>
+                        <a>
+                        <i className="iconfont icon-user" ></i>个人主页
                         </a>
                     </li>
                     <li>
-                        <a href="">
+                        <a >
                         <i className="iconfont icon-shezhi"></i>设置
                         </a>
                     </li>
-                    <li>
-                    <a href="">
-                        <i className="iconfont icon-tuichu"></i>退出
+                    <li onClick={()=> this.context.router.push(`/login`)}>
+                    <a >
+                        <i className="iconfont icon-tuichu" ></i>退出
                         </a>
                     </li>
                 </ul>

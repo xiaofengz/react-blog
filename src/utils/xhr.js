@@ -52,13 +52,13 @@ const xhr = ({method='get', headers, ...options}) => {
                     description: error.message,
                 });
             }
-            if ('stack' in error && 'message' in error) {
-                notification.error({
-                    message: `请求错误: ${url}`,
-                    description: error.message,
-                });
-            }
-            return error;
+            // if ('stack' in error && 'message' in error) {
+            //     notification.error({
+            //         message: `请求错误: ${url}`,
+            //         description: error.message,
+            //     });
+            // }
+            throw error;
         });
 };
 
