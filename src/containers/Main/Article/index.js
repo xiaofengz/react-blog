@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Avatar  } from "antd";
 import Tcarousle from "COMPONENTS/Tcarousle";
+import { Link } from "react-router"
 import img1 from "../../../../static/img/article-1.jpg"
 import img2 from "../../../../static/img/article-2.jpg"
 import img3 from "../../../../static/img/article-3.jpg"
@@ -33,7 +34,7 @@ class Article extends Component {
                                             <span>{ item.user.time }</span>
                                         </div>
                                     </div>
-                                    <a className="note-title"> { item.title } </a>
+                                    <Link to={`/articleDetail/${item.id}`} className="note-title"> { item.title } </Link>
                                     <p className="note-abstract"> { item.content } </p>
                                     <div className="note-footer">
                                         <a href="" className="footer-type">{ item.type }</a>

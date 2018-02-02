@@ -35,8 +35,8 @@ class Login extends Component {
             <div className="login-container">
                 <div className="login-content">
                     <div className="login-logo">
-                        <img src={logo}  /> 
-                        <span>Tiny(Evan's blog)</span>
+                        <img src={logo} title="跳转回首页" onClick={()=>this.context.router.push('/')}/> 
+                        <span title="跳转回首页">Tiny(Evan's blog)</span>
                     </div>
                     <div className="login-form">
                         <Form onSubmit={this.handleSubmit}>
@@ -83,5 +83,7 @@ class Login extends Component {
          )
     }
 }
- 
+Login.contextTypes = {
+    router: React.PropTypes.object
+}
 export default Form.create()(Login);

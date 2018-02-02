@@ -5,6 +5,7 @@ import Editor from 'CONTAINERS/Editor'
 import EditorMarkdown from 'CONTAINERS/Editor/EditorMarkdown'
 import Article from "CONTAINERS/MAIN/Article";
 import Login from "CONTAINERS/Login";
+import ArticleDetail from "CONTAINERS/ArticleDetail";
 
 import {
     Router,
@@ -18,6 +19,7 @@ const routes = (
     <Route path="/login" component={Login} />
     <Route path="/" component={Main}>
         <IndexRoute component={Article}/>
+        <Route path='articleDetail/:id' component={ArticleDetail} />
         <Route path='writeArticle' component={Editor} />
         <Route path='markdown' component={EditorMarkdown} />
     </Route>

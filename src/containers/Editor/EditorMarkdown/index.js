@@ -18,10 +18,7 @@ class EditorMarkdown extends Component {
 		this.setState({
 			value: e.target.value,
 		});
-		console.log(e.keyCode)
-		if (e.keyCode == 9) {
-			alert('tab！')
-		}
+		this.props.onChangeContent(e.target.value)
 	}
 	checkTab (e) {
 		if (e.keyCode == 9) {
@@ -30,7 +27,6 @@ class EditorMarkdown extends Component {
 				value:this.state.value + '    '
 			})
 		}
-		console.log('value',e.target.value)
 	}
     render() {
 
