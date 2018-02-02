@@ -10,7 +10,12 @@ codemirror + react-markdown + highlight(代码高亮)
 基本模仿简书（比较喜欢简书的style~）
 
 # 目前阶段：
-前端界面实现ing.
+- [x]  一、react+express徒手撸简书（一）.主页及编辑器实现（https://zhuanlan.zhihu.com/p/33502524）
+- [x]  二、react+express徒手撸简书（二）.express+mongoose后端（https://zhuanlan.zhihu.com/p/33522807）
+ 
+- [x] 前端界面 首页 实现ing.（1.30）
+- [x] 加入express(2.1)
+- [x] 登录界面（2.2）
 
 · 后续功能：
 
