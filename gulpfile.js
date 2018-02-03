@@ -6,6 +6,7 @@ var gulp = require("gulp"),
 var thirdFiles = [
     'lib/codemirror.css',
     'lib/codemirror.js',
+    'lib/highlight.min.js',
     'lib/javascript.js',
 ];
 
