@@ -1,3 +1,42 @@
+/*
+
+less 变量
+
+*/
+
+//theme
+@themeColor: #408ee6;
+@themeLighter: #92c0f3;
+@warn: #fd733c;
+@deepRed: #ff2a68;
+@yellowGreen: #b4de89;
+@white: #fff;
+@disabled: #d3d3d3;
+
+//文字颜色
+@color: #596268;
+@deepColor: #38424b;
+@titleColor: #38424b;
+@descColor: #a3aaae;
+
+//shadow
+@themeShadow: #c7def8;
+@blackShadow: #b5becd;
+@themeLighterShadow: #e5f0fc;
+
+//background
+@bgc: #f0f2f4;
+@gray: #f3f3f3;
+@themeBg: #f5f7fa;
+
+//border
+@border: #d1d5d8;
+
+//hover
+@tableHover: #e6effe;
+
+
+
 button {
     &.default {
         border-style: none;
@@ -16,6 +55,51 @@ button {
     }
 }
 
+.btn {
+    outline: none;
+    border-style: none;
+    display: inline-block;
+    user-select: none;
+    cursor:pointer;
+    border: none;
+    outline: none;
+    &.default,&.not-stress {
+      height:34px;
+      min-width:116px;
+      line-height: 34px;
+      text-align: center;
+      border-radius: 20px;
+      background: @themeColor;
+      color:@white;
+      &:hover {
+        background: @themeLighter;
+      }
+      &.not-stress{
+        background: @white;
+        color:@themeColor;
+        &:hover {
+          background: @themeColor;
+          color:@white;
+        }
+      }
+    }
+    &.square {
+      color:@themeColor;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    &.disabled {
+      background: @disabled;
+      cursor:not-allowed;
+      &:hover {
+        color:white;
+        background: @disabled;
+      }
+    }
+  }
+
+
 .box() {
     display: -webkit-box;
     display: -moz-box;
@@ -26,4 +110,25 @@ button {
     -moz-box-align: center;
     box-pack: center;
     box-align: center;
+  }
+
+  //antd的modal重新封装 ， width 600px , 按钮设置
+.component-modal-antd {
+    width:100%;
+    height:100%;
+    padding:0 4px 4px;
+    font-size:14px;
+    .title {
+      height:42px;
+      font-size:16px;
+      font-weight:700;
+      padding-bottom:20px;
+    }
+    .footer {
+      text-align:right;
+      padding-top:10px;
+      .btn {
+        margin-left:10px;
+      }
+    }
   }
