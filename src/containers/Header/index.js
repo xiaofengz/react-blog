@@ -32,9 +32,11 @@ class Header extends Component {
         this.context.router.push(`/writeArticle`)
     }
     jumpToPersonalPage () {
-        UserService.fetchUserInfo({
-            id:"1"
-        })
+        this.context.router.push(`personalSetting/articleManage`)
+        
+        // UserService.fetchUserInfo({
+        //     id:"1"
+        // })
     }
     render () {
         return (
