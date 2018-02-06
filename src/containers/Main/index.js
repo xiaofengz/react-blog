@@ -8,7 +8,7 @@ class Main extends Component {
 
     render () {
         return (
-            <div>
+            <div className="main-body" style={{minWidth:"1280px"}}>
                 <Header />
                 {this.props.children}
             </div>

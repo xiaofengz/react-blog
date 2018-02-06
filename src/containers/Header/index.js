@@ -60,38 +60,42 @@ class Header extends Component {
                     }) 
                 }
             </ul>
-            <button className="default" style={{float:"right"}} onClick={this.handleOnToWrite.bind(this)}>
-            <i className="iconfont icon--quill" style={{marginRight:"5px"}}></i>
-            写文章
-            </button>
-            <Search placeholder="搜索..."
-                    onSearch={value => console.log(value)}
-                    size="large"
-                    style={{ width: 260,height:40,marginTop:10,marginRight:25,float:"right" }}/>
-            <div className="header-user">
-                <div className="user-content">
-                    <a href="">
-                        <img src={head} alt="head" />
-                    </a>
-                </div>
-                <ul className="user-setting">
-                    <li onClick={this.jumpToPersonalPage.bind(this)}>
-                        <a>
-                        <i className="iconfont icon-user" ></i>个人主页
+            <div style={{float:"right",width:"30%"}}>
+                <button className="default" style={{float:"right"}} onClick={this.handleOnToWrite.bind(this)}>
+                <i className="iconfont icon--quill" style={{marginRight:"5px"}}></i>
+                写文章
+                </button>
+                <Search placeholder="搜索..."
+                        onSearch={value => console.log(value)}
+                        size="large"
+                        style={{ width: "40%",height:40,marginTop:10,marginRight:25,float:"right" }}/>
+                <div className="header-user">
+                    <div className="user-content">
+                        <a href="">
+                            <img src={head} alt="head" />
                         </a>
-                    </li>
-                    <li onClick={()=> this.context.router.push(`/personalSetting`)}>
+                        <i className="iconfont icon-xiangxia"></i>
+                    </div>
+                    <ul className="user-setting">
+                        <li onClick={this.jumpToPersonalPage.bind(this)}>
+                            <a>
+                            <i className="iconfont icon-user" ></i>个人主页
+                            </a>
+                        </li>
+                        <li onClick={()=> this.context.router.push(`/personalSetting`)}>
+                            <a >
+                            <i className="iconfont icon-shezhi" ></i>设置
+                            </a>
+                        </li>
+                        <li onClick={()=> this.context.router.push(`/login`)}>
                         <a >
-                        <i className="iconfont icon-shezhi" ></i>设置
-                        </a>
-                    </li>
-                    <li onClick={()=> this.context.router.push(`/login`)}>
-                    <a >
-                        <i className="iconfont icon-tuichu" ></i>退出
-                        </a>
-                    </li>
-                </ul>
+                            <i className="iconfont icon-tuichu" ></i>退出
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
+            
             </nav>
         )
     }

@@ -74,9 +74,12 @@ class UserManage extends Component {
                             <label>手机</label>
                             <input type="text" placeholder="请输入手机号" value={phone} onChange={(e)=>{this.setState({phone:e.target.value})}} />
                         </div>
+                        <div className="item">
+                            <button className="default" onClick={this.handleOnSaveBasic}>保存</button>
+                        </div>
                     </div>
                     <div className="userManage-basic-item">
-                        <button className="default" onClick={this.handleOnSaveBasic}>保存</button>
+                        
                     </div>
                 </Card>
                 <Card title="个人资料" style={{ marginBottom: 24 }} bordered={false}>
@@ -100,17 +103,20 @@ class UserManage extends Component {
                         <div className="item" style={{height:"150px"}}>
                             <label>社交账号</label>
                             <div className="bind">
-                                <i className="iconfont icon-weibo"></i>
+                                <i className="iconfont icon-weibo1" style={{color:"#d81e06"}}></i>
                                 <span>绑定微博&gt;</span>
                             </div>
                             <div className="bind">
-                                <i className="iconfont icon-wechat"></i>
+                                <i className="iconfont icon-wechat1" style={{color:"#1afa29"}}></i>
                                 <span>绑定微信&gt;</span>
                             </div>
                             <div className="bind">
                                 <i className="iconfont icon-social-instagram"></i>
                                 <span>绑定ins&gt;</span>
                             </div>
+                        </div>
+                        <div className="item">
+                            <button className="default" onClick={this.handleOnSaveBasic}>保存</button>
                         </div>
                     </div>
                 </Card>

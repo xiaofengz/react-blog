@@ -22,8 +22,9 @@ class Login extends Component {
         );
       }
     handleOnLogin (values) {
+        console.log(values)
         UserService.login({
-            userName:values.userName,
+            username:values.userName,
             password:values.password,
         }).then((data)=>{
             console.log("登录成功res",data)
