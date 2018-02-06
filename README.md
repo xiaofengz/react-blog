@@ -16,6 +16,7 @@ codemirror + react-markdown + highlight(代码高亮)
 - [x] 前端界面 首页 实现ing.（1.30）
 - [x] 加入express(2.1)
 - [x] 登录界面（2.2）
+- [x] 加入mongoose,增加登录接口,增加个人管理页面，文章管理页面（2.6）
 
 · 后续功能：
 
