@@ -4,6 +4,6 @@ function responseClient(res,httpCode = 500, code = 3,message='服务端异常',d
     responseData.code = code;
     responseData.message = message;
     responseData.data = data;
-    res.sendStatus(httpCode).json(responseData)
+    res.status(httpCode).json(responseData)
 }
 module.exports = responseClient;

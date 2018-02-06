@@ -7,7 +7,6 @@ var responseClient = require('../util/utils.js')
 /* GET users listing. */
 
 router.post('/login', function(req, res, next) {
-  console.log("11111")
   let {username, password} = req.body;
   console.log(username,password)
   if (!username) {
@@ -33,11 +32,9 @@ router.post('/login', function(req, res, next) {
 
           responseClient(res, 200, 0, '登录成功', data);
           return;
-      }
-      responseClient(res, 400, 1, '用户名密码错误');
-
+      } 
+        responseClient(res, 200, 1, '用户名密码错误','');
   }).catch(err => {
-    console.log("err",err)
       responseClient(res);
   })
 })

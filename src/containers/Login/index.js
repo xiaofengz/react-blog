@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import logo from '../../../static/img/logo.png';
-import {Form, Tabs, Icon, Input,Button } from "antd";
+import {Form, Tabs, Icon, Input,Button,Notification } from "antd";
 import UserService from 'SERVICES/userService';
 import { Link } from "react-router"
 import "./index.less"
@@ -28,6 +28,8 @@ class Login extends Component {
             password:values.password,
         }).then((data)=>{
             console.log("登录成功res",data)
+        }).catch((err)=>{
+            Notification.error({message:err.message})
         })
     }
     render() { 

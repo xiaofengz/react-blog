@@ -62,15 +62,17 @@ const xhr = ({method='get', headers, ...options}) => {
         });
 };
 
-function handleError({data = {}, status}) {
+function handleError(response) {
+    const {data = {}, status} = response;
     const {errcode} = data;
     if (errcode === 3) {
         //无权限处理
         console.log(new Error('没有权限'))
         //...
     } else {
-        const error = new Error(data.errmsg || status + '错误');
+        const error = new Error(data.message || status + '错误');
         error.response = response;
+        error.message = response.data.message;
         throw error;
     }
 }
