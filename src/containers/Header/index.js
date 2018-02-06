@@ -82,7 +82,7 @@ class Header extends Component {
                             <i className="iconfont icon-user" ></i>个人主页
                             </a>
                         </li>
-                        <li onClick={()=> this.context.router.push(`/personalSetting`)}>
+                        <li onClick={()=> this.context.router.push(`/personalSetting/userManage`)}>
                             <a >
                             <i className="iconfont icon-shezhi" ></i>设置
                             </a>

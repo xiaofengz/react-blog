@@ -17,15 +17,17 @@ router.post('/login', function(req, res, next) {
       responseClient(res, 400, 2, '密码不可为空');
       return;
   }
+
   User.findOne({
       username,
       password
   }).then(userInfo => {
+    console.log(userInfo)
       if (userInfo) {
           //登录成功
           let data = {};
           data.username = userInfo.username;
-          data.userType = userInfo.type;
+          // data.userType = userInfo.type;
           data.userId = userInfo._id;
           //登录成功后设置session
           req.session.userInfo = data;
