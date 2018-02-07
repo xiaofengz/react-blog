@@ -1,8 +1,9 @@
 # react-blog by Evan   2017.12.21
 
 ## 类似简书的博客网站
-![img](https://github.com/xiaofengz/react-markdown-editor/blob/master/static/img/tiny1.gif)
-
+![img](https://github.com/xiaofengz/react-blog/blob/master/static/img/blog1-1.gif)
+![img](https://github.com/xiaofengz/react-blog/blob/master/static/img/blog1-2.gif)
+![img](https://github.com/xiaofengz/react-blog/blob/master/static/img/blog1-3.gif)
 ## 1.编辑器实现
 codemirror + react-markdown + highlight(代码高亮)
 
