@@ -17,7 +17,7 @@ codemirror + react-markdown + highlight(代码高亮)
 - [x] 加入express(2.1)
 - [x] 登录界面（2.2）
 - [x] 加入mongoose,增加登录接口,增加个人管理页面，文章管理页面（2.6）
-
+- [x] 增加查看文章页面，调整文章字体样式（2.8）
 · 后续功能：
 
 > 1.node搭建后端
