@@ -4093,6 +4093,11 @@ textarea.ant-input {
   z-index: 1000;
   display: block;
 }
+@media screen and (max-width: 1400px) {
+  .nav .nav-ul li {
+    width: 120px;
+  }
+}
 /* stylelint-disable at-rule-empty-line-before,at-rule-name-space-after,at-rule-no-unknown */
 /* stylelint-disable declaration-bang-space-before */
 /* stylelint-disable declaration-bang-space-before */
