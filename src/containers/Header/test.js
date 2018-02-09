@@ -27,11 +27,6 @@ const test = [
         ]
     },
     {
-        name:"有趣的js",
-        icon:"iconfont icon-JS-",
-        children:[]
-    },
-    {
         name:"react专题",
         icon:"iconfont icon-react",
         children:[
@@ -55,7 +50,7 @@ const test = [
         ]
     },
     {
-        name:"我的github",
+        name:"about me",
         icon:"iconfont icon-yuan-github",
         children:[
             {

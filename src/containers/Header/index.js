@@ -62,7 +62,7 @@ class Header extends Component {
                     }) 
                 }
             </ul>
-            <div style={{float:"right",width:"30%"}}>
+            <div style={{float:"right"}}>
                 <button className="default" style={{float:"right"}} onClick={this.handleOnToWrite.bind(this)}>
                 <i className="iconfont icon--quill" style={{marginRight:"5px"}}></i>
                 写文章
