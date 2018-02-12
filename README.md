@@ -1,4 +1,4 @@
-# react-blog by Evan   2017.12.21
+# react-blog by Evan   
 
 ## 类似简书的博客网站
 - 首页
