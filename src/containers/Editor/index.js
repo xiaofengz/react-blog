@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { Row, Col,Input,Button } from 'antd';
+import { Row, Col,Input,Button,Notification } from 'antd';
 import Write from 'CONTAINERS/Write';
-import Markdown from './EditorMarkdown'
+import Markdown from './EditorMarkdown';
+import ArticleService from 'SERVICES/ArticleService';
+
 class Editor extends Component {
     constructor(props) {
         super(props)
@@ -18,6 +20,16 @@ class Editor extends Component {
         obj.content = content
         obj.type = "react"        // 类型 暂时先写死
         obj.isPublish = false    //保存
+        ArticleService.addArticle({
+            obj
+        }).then((data)=>{
+            console.log("登录成功res",data)
+            Notification.success({message:data.message})
+            this.context.router.push('/')
+        }).catch((err)=>{
+            console.log("登录失败res",err)
+            Notification.error({message:err.message})
+        })
         console.log(obj)
     }
     // 发布文章
@@ -56,5 +68,7 @@ class Editor extends Component {
         )
     }
 }
-
+Editor.contextTypes = {
+    router: React.PropTypes.object
+}
 export default Editor;

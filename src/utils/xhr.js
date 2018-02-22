@@ -39,7 +39,7 @@ const xhr = ({method='get', headers, ...options}) => {
         })
         .then((response) => {
             const {data} = response;
-            if (data.errcode === 0) {
+            if (data.code === 0 || data.code === 1) {
                 return data;
             } else {
                 handleError(response);
@@ -64,8 +64,8 @@ const xhr = ({method='get', headers, ...options}) => {
 
 function handleError(response) {
     const {data = {}, status} = response;
-    const {errcode} = data;
-    if (errcode === 3) {
+    const {code} = data;
+    if (code === 3) {
         //无权限处理
         console.log(new Error('没有权限'))
         //...

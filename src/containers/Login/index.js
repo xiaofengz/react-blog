@@ -23,18 +23,21 @@ class Login extends Component {
         );
       }
     handleOnLogin (values) {
-        console.log(values)
-        const { user, dispatch } = this.props
-        dispatch({type: 'USER_FETCH_REQUESTED', payload: {userName:values.userName,userName:values.password}})
+        // console.log(values)
+        // const { user, dispatch } = this.props
+        // dispatch({type: 'USER_FETCH_REQUESTED', payload: {userName:values.userName,userName:values.password}})
         // this.props.login(values.userName,values.password)
-        // UserService.login({
-        //     username:values.userName,
-        //     password:values.password,
-        // }).then((data)=>{
-        //     console.log("登录成功res",data)
-        // }).catch((err)=>{
-        //     Notification.error({message:err.message})
-        // })
+        UserService.login({
+            username:values.userName,
+            password:values.password,
+        }).then((data)=>{
+            console.log("登录成功res",data)
+            Notification.success({message:data.message})
+            this.context.router.push('/')
+        }).catch((err)=>{
+            console.log("登录失败res",err)
+            Notification.error({message:err.message})
+        })
     }
     render() { 
         const { getFieldDecorator } = this.props.form;

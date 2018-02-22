@@ -14,5 +14,8 @@
     "mongoose": "^5.0.3",
     "morgan": "~1.9.0",
     "serve-favicon": "~2.4.5"
+  },
+  "devDependencies": {
+    "mysql": "^2.15.0"
   }
 }

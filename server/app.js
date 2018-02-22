@@ -1,4 +1,4 @@
-require('./db');
+// require('./db/D');
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -7,6 +7,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
+var article = require('./routes/article');
 var users = require('./routes/users');
 var app = express();
 // view engine setup
@@ -34,6 +35,7 @@ app.all('*',function (req, res, next) {
   });
 app.use('/', index);
 app.use('/users', users);
+app.use('/article', article);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
