@@ -16,6 +16,8 @@ var responseJSON = function (res, ret) {
     } else { 
       res.json(ret); 
   }};
+
+
 // 发布文章
 router.post('/addArticle', function(req, res, next){
  // 从连接池获取连接 
@@ -35,5 +37,38 @@ connection.query(ArticleSQL.insert, [param.title,param.content,param.type,param.
        });
  });
 
+// 加载首页文章列表
+ router.post('/pullIndexArticle', function(req, res, next){
+   // 从article表中获取文章
+   connection.query(ArticleSQL.queryAll,  function(err, result) {
+       console.log("result,err",err,result)
+           if(result) {  
+                responseClient(res, 200, 1, '添加成功',result)
+           } else {
+               responseClient(res, 400, 2, '添加失败')
+           }
+        // 释放连接  
+       //   connection.release();  
+   
+          });
+    });
 
+// 加载单篇文章列表
+router.post('/pullArticle', function(req, res, next){
+    // 从article表中获取文章
+    var param = req.body; 
+    
+    connection.query(ArticleSQL.queryArticle, [param.id], function(err, result) {
+        console.log("result,err",err,result)
+            if(result) {  
+                 responseClient(res, 200, 1, '添加成功',result)
+            } else {
+                responseClient(res, 400, 2, '添加失败')
+            }
+         // 释放连接  
+        //   connection.release();  
+    
+           });
+     });
+    
 module.exports = router;

@@ -49,7 +49,7 @@ connection.query(userSQL.insert, [param.username,param.password], function(err, 
                 if (results.length == 0) {
                     // res.end(JSON.stringify({status:'102',msg:'用户名或密码错误'}));
                     responseClient(res, 200, 2, '用户名或密码错误')
-                } else{ 
+                } else { 
                     if (results[0].username == param.username && results[0].password == param.password) {
                         // res.end(JSON.stringify({status:'100',msg:'登录成功'}));
                         responseClient(res, 200, 1, '登录成功')

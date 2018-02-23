@@ -6,15 +6,29 @@ import img1 from "../../../../static/img/article-1.jpg"
 import img2 from "../../../../static/img/article-2.jpg"
 import img3 from "../../../../static/img/article-3.jpg"
 import img4 from "../../../../static/img/article-4.jpg"
-
+import ArticleService from 'SERVICES/ArticleService';
 import testArticle from "./test.js"
 import "./index.less";
 class Article extends Component {
     constructor(props) {
         super(props);
-        this.state = {  }
+        this.state = { 
+            article:[]     // 首页文章
+         }
     }
     componentDidMount () {
+        ArticleService.pullIndexArticle({
+        }).then((data)=>{
+            this.setState({
+                article:data.data
+            })
+            console.log("文章res",data)
+            // Notification.success({message:data.message})
+            // this.context.router.push('/')
+        }).catch((err)=>{
+            console.log("文章res",err)
+            // Notification.error({message:err.message})
+        })
         var btn = document.getElementById('btn1');
         var timer = null;
         var isTop = true;
@@ -58,6 +72,7 @@ class Article extends Component {
         // document.body.scrollTop = document.documentElement.scrollTop = 0;
     }
     render() { 
+        const { article } = this.state
         const imgArr = [img1,img2,img3,img4];
         return ( 
             <div className="article-container">
@@ -67,26 +82,26 @@ class Article extends Component {
                 <div className="article-content">
                     <ul className="article-content-ul">
                     {
-                        testArticle && testArticle.map((item,i) => {
+                        article && article.map((item,i) => {
                            return <li key={item.id} className="article-content-li">
                                 <div className="note-content">
                                     <div className="author">
-                                        <Avatar  src={item.user.img} />
+                                        <Avatar  src={item.user ? item.user.img : img1} />
                                         <div className="author-info">
-                                            <a href="">{item.user.name}</a>
-                                            <span>{ item.user.time }</span>
+                                            <a href="">{item.user ? item.user.name : ""}</a>
+                                            <span>{ item.user ? item.user.time :""}</span>
                                         </div>
                                     </div>
-                                    <Link to={`/articleDetail/${item.id}`} className="note-title"> { item.title } </Link>
+                                    <Link to={{pathname:`/articleDetail/${item.id}`,params:{id:item.id}}} className="note-title"> { item.title } </Link>
                                     <p className="note-abstract"> { item.content } </p>
                                     <div className="note-footer">
                                         <a href="" className="footer-type">{ item.type }</a>
                                         <i className="iconfont icon-yanjing-tianchong"></i>
-                                        <a href="" className="footer-readNum"> { item.readNum } </a>
+                                        <a href="" className="footer-readNum"> { item.readNum || 0} </a>
                                         <i className="iconfont icon-xiaoxi"></i>
-                                        <a href="" className="footer-commentNum"> { item.commentNum } </a>
+                                        <a href="" className="footer-commentNum"> { item.commentNum || 0} </a>
                                         <i className="iconfont icon-aixin"></i>
-                                        <a href="" className="footer-agree"> { item.agree } </a>
+                                        <a href="" className="footer-agree"> { item.agree || 0} </a>
                                     </div>
                                 </div>
                             </li>

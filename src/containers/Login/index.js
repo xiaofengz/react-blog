@@ -46,7 +46,7 @@ class Login extends Component {
                 <div className="login-content">
                     <div className="login-logo">
                         <img src={logo} title="跳转回首页" onClick={()=>this.context.router.push('/')}/> 
-                        <span title="跳转回首页">Tiny(Evan's blog)</span>
+                        <span title="跳转回首页">Evan's blog</span>
                     </div>
                     <div className="login-form">
                         <Form onSubmit={this.handleSubmit}>

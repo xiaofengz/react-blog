@@ -4,13 +4,27 @@ import CodeBlock from "COMPONENTS/CodeBlock";
 import  ReactMarkdown from 'react-markdown';
 import head from '../../../static/img/head.jpg';
 import a from './test.js'
+import ArticleService from 'SERVICES/ArticleService';
 import './index.less'
 class ArticleDetail extends Component {
     constructor(props) {
         super(props);
-        this.state = {  }
+        this.state = { 
+            article:[]
+         }
     }
     componentDidMount () {
+        // 获取当前文章
+        const articleId = this.props.params.id
+        ArticleService.pullArticle({
+            id:articleId
+        }).then((data)=>{
+            this.setState({
+                article:data.data[0]
+            })
+        }).catch((err)=>{
+            Notification.error({message:err.message})
+        })
         var btn = document.getElementById('btn');
         var timer = null;
         var isTop = true;
@@ -54,16 +68,17 @@ class ArticleDetail extends Component {
          // document.body.scrollTop = document.documentElement.scrollTop = 0;
      }
     render() { 
+        const { article } = this.state
         return ( 
             <div className="articleDetail-container">
                 <div className="post">
                     <div className="article">
-                        <h1 className="title">react生命周期的基本用法</h1>
+                        <h1 className="title">{article.title || ''}</h1>
                         <div className="author">
                             <Avatar size={'large'} src={head}/>
                             <div className="info">
                                 <span className="name">
-                                Evan_zhan
+                                {article.user ? article.user.name : ''}
                                 </span>
                                 <div className="meta">
                                 "2018.02.06 18:08*
@@ -74,7 +89,7 @@ class ArticleDetail extends Component {
                         </div>
                         <div className="show-content">
                             <ReactMarkdown className="result" 
-                                source={a}  
+                                source={article.content}  
                                 renderers={{code: CodeBlock}}
                             />
                         </div>
