@@ -14,6 +14,12 @@ class EditorMarkdown extends Component {
 	}
 	componentDidMount () {
 	}
+	componentWillReceiveProps (nextProps) {
+		this.props.article.id !== nextProps.article.id && this.setState({
+			article:nextProps.article,
+			value:nextProps.article.content
+		})
+	}
 	updateCode(e) {
 		this.setState({
 			value: e.target.value,

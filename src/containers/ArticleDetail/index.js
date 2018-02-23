@@ -93,6 +93,9 @@ class ArticleDetail extends Component {
                                 renderers={{code: CodeBlock}}
                             />
                         </div>
+                        <div>
+                            {/* <span>喜欢</span> */}
+                        </div>
                     </div>
                 </div>
                 <Tooltip placement="left" title={"回到顶部"}>

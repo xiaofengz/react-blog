@@ -24,17 +24,34 @@ router.post('/addArticle', function(req, res, next){
 var param = req.body.obj; 
 console.log(param)
 // 建立连接 增加一个用户信息 
-connection.query(ArticleSQL.insert, [param.title,param.content,param.type,param.isPublish], function(err, result) {
-    console.log("result,err",err,result)
-        if(result) {  
-             responseClient(res, 200, 1, '添加成功')
+if (param.id) {
+    // 存在ID，则为update文章
+    connection.query(ArticleSQL.updateArticle, [param.title,param.content,param.type,param.isPublish,param.id], function(err, result) {
+        console.log("result,err",err,result)
+            if(result) {  
+                 responseClient(res, 200, 1, '更新成功')
+            } else {
+                responseClient(res, 400, 2, '更新失败')
+            }
+         // 释放连接  
+        //   connection.release();  
+    
+           });
         } else {
-            responseClient(res, 400, 2, '添加失败')
+            // 新增文章
+            connection.query(ArticleSQL.insert, [param.title,param.content,param.type,param.isPublish], function(err, result) {
+                console.log("result,err",err,result)
+                    if(result) {  
+                         responseClient(res, 200, 1, '添加成功')
+                    } else {
+                        responseClient(res, 400, 2, '添加失败')
+                    }
+                 // 释放连接  
+                //   connection.release();  
+            
+                   });
         }
-     // 释放连接  
-    //   connection.release();  
 
-       });
  });
 
 // 加载首页文章列表
@@ -70,5 +87,24 @@ router.post('/pullArticle', function(req, res, next){
     
            });
      });
+
+
+// 加载当前用户文章列表
+router.post('/pullUserArticle', function(req, res, next){
+    // 从article表中获取文章
+    var param = req.body; 
     
+    connection.query(ArticleSQL.queryAll , function(err, result) {
+        console.log("result,err",err,result)
+            if(result) {  
+                 responseClient(res, 200, 1, '获取当前用户文章成功',result)
+            } else {
+                responseClient(res, 400, 2, '获取当前用户文章失败')
+            }
+         // 释放连接  
+        //   connection.release();  
+    
+           });
+     });     
+     
 module.exports = router;

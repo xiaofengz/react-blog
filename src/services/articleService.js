@@ -25,6 +25,16 @@ class ArticleService {
         }
       });
     }
+    // 当前用户文章列表
+    pullUserArticle (data) {
+      return xhr({
+        method: "post",
+        url: "http://127.0.0.1:9001/article/pullUserArticle",
+        data: {
+          ...data
+        }
+      });
+    }
     // 单篇文章
     pullArticle(data) {
       return xhr({
