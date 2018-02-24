@@ -5,15 +5,23 @@ import head from '../../../static/img/head.jpg';
 import './index.less';
 import UserService from 'SERVICES/userService';
 import test from './test';
-
+import userService from 'SERVICES/userService'
 const Search = Input.Search;
 
 class Header extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            currentNav:0
+            currentNav:0,
+            userInfo:{}
         }
+    }
+    componentDidMount () {
+        userService.fetchUserInfo().then((res) => {
+            this.setState({
+                userInfo:res.data[0]
+            })
+        })
     }
     // choose nav title
     handleOnClickNav (index) {
@@ -39,6 +47,7 @@ class Header extends Component {
         // })
     }
     render () {
+        const { userInfo } = this.state
         return (
             <nav className="nav">
             <img src={logo} title="回到首页" onClick={()=> this.context.router.push(`/`)}/>
@@ -75,7 +84,7 @@ class Header extends Component {
                 <div className="header-user">
                     <div className="user-content">
                         <a href="">
-                            <img src={head} alt="head" />
+                            <img src={userInfo.img ? userInfo.img : head} alt="head" />
                         </a>
                         <i className="iconfont icon-xiangxia"></i>
                     </div>

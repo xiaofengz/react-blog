@@ -5,7 +5,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
+var Cookies=require('cookies')
 var index = require('./routes/index');
 var article = require('./routes/article');
 var users = require('./routes/users');
@@ -21,6 +21,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+// app.use(function (req,res,next) {
+//   req.cookies=new Cookies(req,res)
+//   next();
+// })
 app.all('*',function (req, res, next) {  
   res.header('Access-Control-Allow-Origin', 'http://localhost:8088'); 
   res.header('Access-Control-Allow-Credentials', true); 
@@ -33,6 +37,7 @@ app.all('*',function (req, res, next) {
     }
     
   });
+
 app.use('/', index);
 app.use('/users', users);
 app.use('/article', article);

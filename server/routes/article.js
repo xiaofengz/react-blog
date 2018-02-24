@@ -22,7 +22,6 @@ var responseJSON = function (res, ret) {
 router.post('/addArticle', function(req, res, next){
  // 从连接池获取连接 
 var param = req.body.obj; 
-console.log(param)
 // 建立连接 增加一个用户信息 
 if (param.id) {
     // 存在ID，则为update文章
@@ -40,7 +39,6 @@ if (param.id) {
         } else {
             // 新增文章
             connection.query(ArticleSQL.insert, [param.title,param.content,param.type,param.isPublish,updateTime], function(err, result) {
-                console.log("result,err",err,result)
                     if(result) {  
                          responseClient(res, 200, 1, '添加成功')
                     } else {
@@ -58,7 +56,6 @@ if (param.id) {
  router.post('/pullIndexArticle', function(req, res, next){
    // 从article表中获取文章
    connection.query(ArticleSQL.queryAll,  function(err, result) {
-       console.log("result",result)
            if(result) {  
                let response = []
                result.map((item,i) => {
@@ -94,7 +91,6 @@ router.post('/pullArticle', function(req, res, next){
     var param = req.body; 
     
     connection.query(ArticleSQL.queryArticle, [param.id], function(err, result) {
-        console.log("result,err",err,result)
             if(result) {  
                  responseClient(res, 200, 1, '成功',result)
             } else {
@@ -113,7 +109,6 @@ router.post('/pullUserArticle', function(req, res, next){
     var param = req.body; 
     
     connection.query(ArticleSQL.queryAll , function(err, result) {
-        console.log("result,err",err,result)
             if(result) {  
                  responseClient(res, 200, 1, '获取当前用户文章成功',result)
             } else {

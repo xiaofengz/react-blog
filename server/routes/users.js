@@ -16,25 +16,25 @@ var responseJSON = function (res, ret) {
     } else { 
       res.json(ret); 
   }};
+
+
 // 添加用户
 router.get('/addUser', function(req, res, next){
-// 获取前台页面传过来的参数  
- var param = req.query || req.params;   
-// 建立连接 增加一个用户信息 
-connection.query(userSQL.insert, [param.username,param.password], function(err, result) {
+    // 获取前台页面传过来的参数  
+    var param = req.query || req.params;   
+    // 建立连接 增加一个用户信息 
+    connection.query(userSQL.insert, [param.username,param.password], function(err, result) {
         if(result) {  
-             responseClient(res, 200, 1, '添加成功')
+            responseClient(res, 200, 1, '添加成功')
         } else {
             responseClient(res, 400, 2, '添加失败')
         }
-          
-     // 释放连接  
-      connection.release();  
-
-       });
-    // });
+        // 释放连接  
+        connection.release();  
+        });
  });
 
+ // 登陆
  router.all('/login', function(req, res, next){
     if (req.method == "POST") {
         var param = req.body;
@@ -52,10 +52,54 @@ connection.query(userSQL.insert, [param.username,param.password], function(err, 
                 } else { 
                     if (results[0].username == param.username && results[0].password == param.password) {
                         // res.end(JSON.stringify({status:'100',msg:'登录成功'}));
+                        let user = {
+                            _id:results[0].id,
+                            username:results[0].username
+                        }
+                        // req.cookies.set('userInfo',JSON.stringify(user))
+                        res.cookie('user', user, { expires: new Date(Date.now() + 900000), httpOnly: true });
                         responseClient(res, 200, 1, '登录成功')
                     }
                 }
        }
     })
 });
+
+// 获取用户信息
+router.get('/getUserInfo', function(req, res, next){
+    // 获取前台页面传过来的参数  
+    // console.log("cookies",req.cookies.user,req.cookies['user'],req.cookies)
+    var user = {
+        id:req.cookies.user._id,
+        username:req.cookies.user.username,
+    }
+    // 建立连接 增加一个用户信息 
+    connection.query(userSQL.findUser, [user.id], function(err, result) {
+        if(result) {  
+            responseClient(res, 200, 1, '添加成功',result)
+        } else {
+            responseClient(res, 400, 2, '添加失败')
+        }
+        });
+ });
+
+// 修改用户信息
+router.post('/updateUserInfo', function(req, res, next){
+    // 获取前台页面传过来的参数  
+    // console.log("cookies",req.cookies.user,req.cookies['user'],req.cookies)
+    var user = {
+        id:req.cookies.user._id,
+        username:req.cookies.user.username,
+    } 
+    var params = req.body
+    console.log(params,user.id)
+    // 建立连接 增加一个用户信息 
+    connection.query(userSQL.updateUser, [params.img,params.nickname,params.username,params.sex,params.personalIntro,params.personalWebsite,user.id], function(err, result) {
+        if(result) {  
+            responseClient(res, 200, 1, '修改成功',result)
+        } else {
+            responseClient(res, 400, 2, '添加失败')
+        }
+        });
+ });
 module.exports = router;

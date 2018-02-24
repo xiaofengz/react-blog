@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { Breadcrumb, Card, Radio } from 'antd';
+import { Breadcrumb, Card, Radio, Notification} from 'antd';
 import head from '../../../../static/img/head.jpg';
-import Croppper from "COMPONENTS/UploadImg"
+import Croppper from "COMPONENTS/UploadImg";
+import userService from 'SERVICES/userService';
+
 import "./index.less"
 
 const RadioGroup = Radio.Group;
@@ -10,11 +12,23 @@ class UserManage extends Component {
         super(props);
         this.state = { 
             img:head,
-            name:"Evan",
-            phone:"15682071389",
-            website:"xiaofengz.com",
-            sexValue:1
+            name:"",
+            phone:"",
+            website:"",
+            sexValue:1,
+            intro:"",
+            userInfo:{}
          }
+    }
+    componentDidMount () {
+        // 获取用户信息
+        userService.fetchUserInfo().then((res) => {
+            this.setState({
+                userInfo:res.data[0],
+                name:res.data[0].nickname,
+                phone:res.data[0].username
+            })
+        })
     }
     uploadHeadPortrait(canvas) {
         console.log("canvas",canvas)
@@ -40,10 +54,38 @@ class UserManage extends Component {
         }
         return new Blob([u8arr], {type: mime});
     }
-    handleOnSaveBasic = () => {
-        const { name, phone } = this.state
-        // 保存基本信息接口
 
+    // 保存基本信息
+    handleOnSaveBasic = () => {
+        const { name, phone, img } = this.state
+        // 保存基本信息接口
+        // params.img,params.nickname,params.username,params.sex,params.personalIntro,params.personalWebsite
+        userService.updateUserInfo({
+            img:img,
+            nickname:name,
+            username:phone
+        }).then((res) => {
+            console.log(res)
+            Notification.success({message:"修改成功！"})
+        }).catch((err) => {
+            Notification.error({message:err.message})
+        })
+    }
+    //保存其他信息
+    handleOnSaveOther = () => {
+        const { sexValue, intro, website } = this.state
+        // 保存基本信息接口
+        // params.img,params.nickname,params.username,params.sex,params.personalIntro,params.personalWebsite
+        userService.updateUserInfo({
+            sex:sexValue,
+            personalIntro:intro,
+            personalWebsite:website
+        }).then((res) => {
+            console.log(res)
+            Notification.success({message:"修改成功！"})
+        }).catch((err) => {
+            Notification.error({message:err.message})
+        })
     }
     onSexChange = (e) => {
         console.log('radio checked', e.target.value);
@@ -52,7 +94,7 @@ class UserManage extends Component {
         });
     }
     render() { 
-        const { name, phone,website } = this.state
+        const { name, phone,website,userInfo,intro } = this.state
         return ( 
             <div className="userManage-container">
                 <div className="manage-title">
@@ -63,12 +105,12 @@ class UserManage extends Component {
                 </div>
                 <Card title="基础设置" style={{ marginBottom: 24 }} bordered={false}>
                     <div className="userManage-basic-item" >
-                        <Croppper isUploading={false} onCroppedOver={this.uploadHeadPortrait.bind(this)}  imgUrl={this.state.img}/>
+                        <Croppper isUploading={false} onCroppedOver={this.uploadHeadPortrait.bind(this)}  imgUrl={userInfo.img || head}/>
                     </div>
                     <div className="userManage-basic-item">
                         <div className="item">
                             <label>昵称</label>
-                            <input type="text" placeholder="请输入昵称"value={name}onChange={(e)=>{this.setState({name:e.target.value})}}  />
+                            <input type="text" placeholder="请输入昵称" value={name} onChange={(e)=>{this.setState({name:e.target.value})}}  />
                         </div>
                         <div className="item">
                             <label>手机</label>
@@ -94,7 +136,7 @@ class UserManage extends Component {
                         </div>
                         <div className="item" style={{height:"165px"}}>
                             <label>个人简介</label>
-                            <textarea className="personal-info" placeholder="填写你的个人简介" ></textarea>
+                            <textarea className="personal-info" value={intro} onChange={ (e) => { this.setState({intro:e.target.value}) } } placeholder="填写你的个人简介" ></textarea>
                         </div>
                         <div className="item" >
                             <label>个人网站</label>
@@ -116,7 +158,7 @@ class UserManage extends Component {
                             </div>
                         </div>
                         <div className="item">
-                            <button className="default" onClick={this.handleOnSaveBasic}>保存</button>
+                            <button className="default" onClick={this.handleOnSaveOther}>保存</button>
                         </div>
                     </div>
                 </Card>
