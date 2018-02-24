@@ -26,8 +26,8 @@ console.log(param)
 // 建立连接 增加一个用户信息 
 if (param.id) {
     // 存在ID，则为update文章
-    connection.query(ArticleSQL.updateArticle, [param.title,param.content,param.type,param.isPublish,param.id], function(err, result) {
-        console.log("result,err",err,result)
+    let updateTime = Date.parse(new Date());
+    connection.query(ArticleSQL.updateArticle, [param.title,param.content,param.type,param.isPublish,updateTime,param.id], function(err, result) {
             if(result) {  
                  responseClient(res, 200, 1, '更新成功')
             } else {
@@ -39,7 +39,7 @@ if (param.id) {
            });
         } else {
             // 新增文章
-            connection.query(ArticleSQL.insert, [param.title,param.content,param.type,param.isPublish], function(err, result) {
+            connection.query(ArticleSQL.insert, [param.title,param.content,param.type,param.isPublish,updateTime], function(err, result) {
                 console.log("result,err",err,result)
                     if(result) {  
                          responseClient(res, 200, 1, '添加成功')
@@ -58,11 +58,29 @@ if (param.id) {
  router.post('/pullIndexArticle', function(req, res, next){
    // 从article表中获取文章
    connection.query(ArticleSQL.queryAll,  function(err, result) {
-       console.log("result,err",err,result)
+       console.log("result",result)
            if(result) {  
-                responseClient(res, 200, 1, '添加成功',result)
+               let response = []
+               result.map((item,i) => {
+                   response[i] = {
+                    id:result[i].id,
+                    title:result[i].title,
+                    content:result[i].content,
+                    type:result[i].type,
+                    isPublish:result[i].isPublish,
+                    agree:result[i].agree,
+                    commentNum:result[i].commentNum,
+                    readNum:result[i].readNum,
+                    author:{
+                        name:result[i].author,
+                        img:result[i].img,
+                        updateTime:result[i].updateTime
+                    }
+                   }
+               })
+                responseClient(res, 200, 1, '拉取成功',response)
            } else {
-               responseClient(res, 400, 2, '添加失败')
+               responseClient(res, 400, 2, '拉取失败')
            }
         // 释放连接  
        //   connection.release();  
@@ -78,9 +96,9 @@ router.post('/pullArticle', function(req, res, next){
     connection.query(ArticleSQL.queryArticle, [param.id], function(err, result) {
         console.log("result,err",err,result)
             if(result) {  
-                 responseClient(res, 200, 1, '添加成功',result)
+                 responseClient(res, 200, 1, '成功',result)
             } else {
-                responseClient(res, 400, 2, '添加失败')
+                responseClient(res, 400, 2, '失败')
             }
          // 释放连接  
         //   connection.release();  

@@ -54,6 +54,11 @@ const test = [
         icon:"iconfont icon-yuan-github",
         children:[
             {
+                name:"我的github",
+                icon:"iconfont icon-jianbao",
+                href:"https://github.com/xiaofengz",
+            },
+            {
                 name:"我的简书",
                 icon:"iconfont icon-jianbao",
                 href:"https://www.jianshu.com/u/c61d3264146f",

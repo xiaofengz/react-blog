@@ -7,7 +7,8 @@ import img2 from "../../../../static/img/article-2.jpg"
 import img3 from "../../../../static/img/article-3.jpg"
 import img4 from "../../../../static/img/article-4.jpg"
 import ArticleService from 'SERVICES/ArticleService';
-import testArticle from "./test.js"
+import testArticle from "./test.js";
+import moment from 'moment';
 import "./index.less";
 class Article extends Component {
     constructor(props) {
@@ -17,6 +18,7 @@ class Article extends Component {
          }
     }
     componentDidMount () {
+        moment.locale('zh-cn');
         ArticleService.pullIndexArticle({
         }).then((data)=>{
             this.setState({
@@ -86,10 +88,10 @@ class Article extends Component {
                            return <li key={item.id} className="article-content-li">
                                 <div className="note-content">
                                     <div className="author">
-                                        <Avatar  src={item.user ? item.user.img : img1} />
+                                        <Avatar  src={item.author ? item.author.img : img1} />
                                         <div className="author-info">
-                                            <a href="">{item.user ? item.user.name : ""}</a>
-                                            <span>{ item.user ? item.user.time :""}</span>
+                                            <a href="">{item.author ? item.author.name : ""}</a>
+                                            <span>{ item.author ? moment(item.author.time).fromNow() :""}</span>
                                         </div>
                                     </div>
                                     <Link to={{pathname:`/articleDetail/${item.id}`,params:{id:item.id}}} className="note-title"> { item.title } </Link>

@@ -80,7 +80,8 @@ class Editor extends Component {
     handleOnSelectArticle (item) {
         this.setState({
             currentArticle:item.id,
-            title:item.title
+            title:item.title,
+            content:item.content
         })
         // 获取当前文章
         const articleId = this.props.params.id
