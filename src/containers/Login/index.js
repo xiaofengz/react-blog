@@ -44,9 +44,11 @@ class Login extends Component {
         return ( 
             <div className="login-container">
                 <div className="login-content">
+                <iframe src="https://ghbtns.com/github-btn.html?user=xiaofengz&repo=react-blog&type=star&count=true" frameborder="0" style={{border:"none",position:"absolute",transform:"translateX(270px)"}} scrolling="0" width="170px" height="20px"></iframe>
                     <div className="login-logo">
                         <img src={logo} title="跳转回首页" onClick={()=>this.context.router.push('/')}/> 
-                        <span title="跳转回首页">Evan's blog</span>
+                        <span title="跳转回首页">Evan's blog
+                        </span>
                     </div>
                     <div className="login-form">
                         <Form onSubmit={this.handleSubmit}>
