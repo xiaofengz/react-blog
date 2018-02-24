@@ -25,6 +25,7 @@ class UserManage extends Component {
         userService.fetchUserInfo().then((res) => {
             this.setState({
                 userInfo:res.data[0],
+                img:res.data[0].img,
                 name:res.data[0].nickname,
                 phone:res.data[0].username
             })
@@ -32,19 +33,22 @@ class UserManage extends Component {
     }
     uploadHeadPortrait(canvas) {
         console.log("canvas",canvas)
-        const {fetchBaseInfo} = this.props;
+        // const {fetchBaseInfo} = this.props;
         let blob = this.dataURLtoBlob(canvas.toDataURL());
 
         let formData = new FormData();
         formData.append("files", blob);
-        // 暂时本地写死。
+        // // 暂时本地写死。
         this.setState({
             img:canvas.toDataURL()
         })
-        // server.uploadHeadImg(formData).then((data) => {
-        //     fetchBaseInfo();
-        //     notification.success({message: "修改成功"});
-        // },({message})=>notification.error({message}))
+        console.log("formData",blob,formData)
+        userService.updateUserInfo({
+            img:canvas.toDataURL()
+        }).then((data) => {
+            // fetchBaseInfo();
+            Notification.success({message: "修改成功"});
+        },({message})=>Notification.error({message}))
     }
     dataURLtoBlob(dataurl) {
         let arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1], bstr = atob(arr[1]), n = bstr.length,
@@ -94,7 +98,7 @@ class UserManage extends Component {
         });
     }
     render() { 
-        const { name, phone,website,userInfo,intro } = this.state
+        const { name, phone,website,userInfo,intro,img } = this.state
         return ( 
             <div className="userManage-container">
                 <div className="manage-title">
@@ -105,7 +109,7 @@ class UserManage extends Component {
                 </div>
                 <Card title="基础设置" style={{ marginBottom: 24 }} bordered={false}>
                     <div className="userManage-basic-item" >
-                        <Croppper isUploading={false} onCroppedOver={this.uploadHeadPortrait.bind(this)}  imgUrl={userInfo.img || head}/>
+                        <Croppper isUploading={false} onCroppedOver={this.uploadHeadPortrait.bind(this)}  imgUrl={img}/>
                     </div>
                     <div className="userManage-basic-item">
                         <div className="item">
