@@ -1,16 +1,27 @@
 import React, { Component } from 'react';
 import { Breadcrumb, Card, Table, Modal, Button } from 'antd';
+import articleService from 'SERVICES/articleService'
+
 import "./index.less"
 
 class ArticleManage extends Component {
     constructor(props) {
         super(props);
         this.state = { 
-            visible:false
+            visible:false,
+            article:[]
          }
     }
+    componentDidMount () {
+        articleService.pullUserArticle().then((res) => {
+            this.setState({
+                article:res.data
+            })
+        })
+    }
     readArticle (values) {
-        this.context.router.push('articleDetail/1')
+        this.context.router.push({pathname:`/articleDetail/${values.id}`,params:{id:values.id}})
+
         console.log(values)
     }
     editArticle (values) {
@@ -36,6 +47,7 @@ class ArticleManage extends Component {
         });
     }
     render() { 
+        const { article } = this.state
         const dataSource = [{
             key: '1',
             name: '胡彦斌',
@@ -50,16 +62,16 @@ class ArticleManage extends Component {
           
           const columns = [{
             title: '文章',
-            dataIndex: 'name',
-            key: 'name',
+            dataIndex: 'title',
+            key: 'title',
           }, {
             title: '上次修改时间',
-            dataIndex: 'age',
-            key: 'age',
+            dataIndex: 'updateTime',
+            key: 'updateTime',
           }, {
             title: '作者',
-            dataIndex: 'address',
-            key: 'address',
+            dataIndex: 'author',
+            key: 'author',
           },
           {
             title: '阅读量',
@@ -89,7 +101,7 @@ class ArticleManage extends Component {
                     </Breadcrumb>
                 </div>
                 <Card title="文章列表" style={{ marginBottom: 24 }} bordered={false}>
-                    <Table dataSource={dataSource} columns={columns} />
+                    <Table dataSource={article} columns={columns} />
                 </Card>
                 <Modal
                     title="删除文章"

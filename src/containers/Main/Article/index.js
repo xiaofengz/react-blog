@@ -78,7 +78,7 @@ class Article extends Component {
         const imgArr = [img1,img2,img3,img4];
         return ( 
             <div className="article-container">
-                <iframe style={{border:"none",position:"absolute","right":"40px"}} src="https://ghbtns.com/github-btn.html?user=xiaofengz&repo=react-blog&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px">
+                <iframe style={{border:"none",position:"absolute","right":"40px"}} src="https://ghbtns.com/github-btn.html?user=xiaofengz&repo=react-blog&type=star&count=true&size=large" frameBorder="0" scrolling="0" width="160px" height="30px">
                 </iframe>
                 <div className="article-caroucel">
                     <Tcarousle content={imgArr}/>
@@ -118,7 +118,6 @@ class Article extends Component {
                         <i className="iconfont icon-xiangshang"></i>
                     </button>
                 </Tooltip>
-                    
             </div>
          )
     }
