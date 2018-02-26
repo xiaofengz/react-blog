@@ -4,5 +4,6 @@ var ArticleSQL = {
     queryArticle:'SELECT * FROM article WHERE id = ? ',
     updateArticle:'UPDATE article SET title = ?,content = ?,type = ?,isPublish = ?,updateTime = ? WHERE id = ?',
     getUserByInfo:'SELECT * FROM User WHERE username = ? AND password = ? ',
+    deleteArticle:"DELETE FROM article WHERE id = ? "
   };
 module.exports = ArticleSQL;

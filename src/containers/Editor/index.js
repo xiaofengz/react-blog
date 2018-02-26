@@ -29,6 +29,20 @@ class Editor extends Component {
             console.log("文章res",err)
             // Notification.error({message:err.message})
         })
+
+        // 文章管理 编辑--跳转 默认显示当前编辑文章
+        ArticleService.pullArticle({
+            id:this.props.location.state.id
+        }).then((data)=>{
+            this.setState({
+                // currentArticle:data.data[0],
+                article:data.data[0],
+                title:data.data[0].title,
+                content:data.data[0].content,
+            })
+        }).catch((err)=>{
+            Notification.error({message:err.message})
+        })
     }
     //保存文章
     saveArticle () {

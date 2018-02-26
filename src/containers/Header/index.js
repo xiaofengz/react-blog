@@ -91,12 +91,12 @@ class Header extends Component {
                     <ul className="user-setting">
                         <li onClick={this.jumpToPersonalPage.bind(this)}>
                             <a>
-                            <i className="iconfont icon-user" ></i>个人主页
+                            <i className="iconfont icon-user" ></i>文章管理
                             </a>
                         </li>
                         <li onClick={()=> this.context.router.push(`/personalSetting/userManage`)}>
                             <a >
-                            <i className="iconfont icon-shezhi" ></i>设置
+                            <i className="iconfont icon-shezhi" ></i>个人设置
                             </a>
                         </li>
                         <li onClick={()=> this.context.router.push(`/login`)}>

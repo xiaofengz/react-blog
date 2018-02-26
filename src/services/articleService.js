@@ -45,6 +45,17 @@ class ArticleService {
         }
       });
     }
+
+    // 删除当前文章
+    deleteArticle(data) {
+      return xhr({
+        method: "post",
+        url: "http://127.0.0.1:9001/article/deleteArticle",
+        data: {
+          ...data
+        }
+      });
+    }
 }
 
 export default new ArticleService();

@@ -118,6 +118,24 @@ router.post('/pullUserArticle', function(req, res, next){
         //   connection.release();  
     
            });
-     });     
+     });
+     
+
+// 删除当前文章
+router.post('/deleteArticle', function(req, res, next){
+    // 从article表中获取文章
+    var param = req.body; 
+    
+    connection.query(ArticleSQL.deleteArticle ,[param.id], function(err, result) {
+            if(result) {  
+                 responseClient(res, 200, 1, '成功',result)
+            } else {
+                responseClient(res, 400, 2, '失败')
+            }
+         // 释放连接  
+        //   connection.release();  
+    
+           });
+     });
      
 module.exports = router;

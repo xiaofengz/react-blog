@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Breadcrumb, Card, Table, Modal, Button } from 'antd';
+import { Breadcrumb, Card, Table, Modal, Button, Notification } from 'antd';
 import articleService from 'SERVICES/articleService'
 
 import "./index.less"
@@ -9,7 +9,8 @@ class ArticleManage extends Component {
         super(props);
         this.state = { 
             visible:false,
-            article:[]
+            article:[],
+            currentDelete:null
          }
     }
     componentDidMount () {
@@ -21,21 +22,32 @@ class ArticleManage extends Component {
     }
     readArticle (values) {
         this.context.router.push({pathname:`/articleDetail/${values.id}`,params:{id:values.id}})
-
         console.log(values)
     }
     editArticle (values) {
-        this.context.router.push('writeArticle')
+        this.context.router.push({pathname:`/writeArticle`,state:{id:values.id}})
         console.log("2",values)
     }
-    deleteArticle = () => {
+    deleteArticle = (values) => {
         this.setState({
           visible: true,
+          currentDelete:values.id
         });
       }
     handleOk = (e) => {
         console.log(e);
         //删除文章
+        articleService.deleteArticle({
+            id:this.state.currentDelete
+        }).then((res) => {
+            // 刷新
+            Notification.success({message:"删除成功！"})
+            articleService.pullUserArticle().then((res) => {
+                this.setState({
+                    article:res.data
+                })
+            })
+        })
         this.setState({
             visible: false,
         });
@@ -48,17 +60,6 @@ class ArticleManage extends Component {
     }
     render() { 
         const { article } = this.state
-        const dataSource = [{
-            key: '1',
-            name: '胡彦斌',
-            age: 32,
-            address: '西湖区湖底公园1号'
-          }, {
-            key: '2',
-            name: '胡彦祖',
-            age: 42,
-            address: '西湖区湖底公园1号'
-          }];
           
           const columns = [{
             title: '文章',
